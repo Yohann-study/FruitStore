@@ -12,7 +12,7 @@
     <title>管理员登录</title>
 </head>
 <body>
-<form action="/login/tomlogin" method="post">
+<form action="/login/adminToLogin" method="post">
     <div class="container">
         <div  style="text-align:center;margin-top:5%;margin-bottom:5%;">
             <h1>管理员登录</h1>
@@ -32,7 +32,7 @@
             <div class="col-sm-4">
             </div>
             <div class="col-sm-4"  style="font-size:30px;">
-                密码：<input type="text" name="passWord" value="111111">
+                密码：<input type="password" name="passWord" value="111111">
             </div>
             <div class="col-sm-4">
             </div>

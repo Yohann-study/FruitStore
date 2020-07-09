@@ -2,10 +2,16 @@ package com.yohann.service.impl;
 
 import com.yohann.dao.BaseDao;
 import com.yohann.service.BaseService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
+/**
+ * 服务层实现基类
+ * @param <T>
+ */
 public  abstract class BaseServiceImpl<T> implements BaseService<T>{
+    @Autowired
     private BaseDao<T> baseDao;
     public abstract BaseDao<T> getBaseDao();
 

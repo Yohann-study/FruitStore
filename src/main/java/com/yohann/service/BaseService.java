@@ -4,6 +4,10 @@ import com.yohann.dao.BaseDao;
 
 import java.util.List;
 
+/**
+ * 服务层接口基类
+ * @param <T>
+ */
 public interface BaseService<T>{
     /**
      * 查询所有信息
