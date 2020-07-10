@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yohann.dao.ItemCategoryDao">
+    <!-- 查询所有 -->
+    <select id="findAll" resultType="com.yohann.entity.ItemCategory">
+        select * from item_category
+    </select>
+
+    <!-- 按对象查询 -->
+    <select id="findEntity" resultType="com.yohann.entity.ItemCategory" parameterType="com.yohann.entity.ItemCategory">
+        select * from item_category
+        <trim prefix="where" prefixOverrides="and">
+            <if test="name != null">
+                name = #{name}
+            </if>
+            <if test="pid != null">
+                and pid = #{pid}
+            </if>
+            <if test="isDelete != null">
+                and isDelete = #{isDelete}
+            </if>
+        </trim>
+    </select>
+
+    <!-- 按ID查询 -->
+    <select id="findById" resultType="com.yohann.entity.ItemCategory" parameterType="int">
+        select * from item_category where id = #{id}
+    </select>
+    
+    <!-- 插入 -->
+    <insert id="insert" parameterType="com.yohann.entity.ItemCategory">
+        insert into item_category(name, pid, isDelete) values (#{name}, #{pid}, #{isDelete})
+    </insert>
+
+    <!-- 修改 -->
+    <update id="update" parameterType="com.yohann.entity.ItemCategory">
+        update item_category
+        <trim prefix="set" prefixOverrides=",">
+            <if test="name != null">
+                name = #{name}
+            </if>
+            <if test="pid != null">
+                , pid = #{pid}
+            </if>
+            <if test="isDelete != null">
+                , isDelete = #{isDelete}
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <!-- 按照ID删除 -->
+    <delete id="deleteById" parameterType="int">
+        delete from item_category where id = #{id}
+    </delete>
+</mapper>
