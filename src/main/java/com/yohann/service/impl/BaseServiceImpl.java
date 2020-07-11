@@ -2,9 +2,12 @@ package com.yohann.service.impl;
 
 import com.yohann.dao.BaseDao;
 import com.yohann.service.BaseService;
+import com.yohann.utils.Pager;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 服务层实现基类
@@ -43,5 +46,18 @@ public  abstract class BaseServiceImpl<T> implements BaseService<T>{
     @Override
     public void update(T t) {
         this.getBaseDao().update(t);
+    }
+
+    @Override
+    public long count() {
+        return this.getBaseDao().count();
+    }
+
+    @Override
+    public List<T> findByPager(Pager pager) {
+        Map<String, Object> map = new HashMap();
+        map.put("starIndex", (pager.getPage()-1) * pager.getSize());
+        map.put("pageSize", pager.getSize());
+        return this.getBaseDao().findByPager(map);
     }
 }

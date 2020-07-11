@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="/common/master.jsp"%>
+<%@include file="/master/master.jsp"%>
 <html>
 <head>
     <title>管理员登录</title>
@@ -19,33 +19,33 @@
             </div>
 
             <div style="background-color: rgb(91,192,222);">
-                <div class="row">
-                    <div class="col-sm-4">
+                <div class="row"  style="text-align: center">
+                    <div class="col-xs-3">
                     </div>
-                    <div class="col-sm-4" style="font-size:20px;margin-top:5%;margin-bottom:5%;">
-                        账号：<input type="text" name="userName" value="admin">
+                    <div class="col-xs-6" style="font-size:20px;margin-top:5%;margin-bottom:5%;">
+                        <i class="fa fa-user" aria-hidden="true" style="font-size:25px;">&nbsp;</i><input type="text" name="userName" value="admin">
                     </div>
-                    <div class="col-sm-4">
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-4">
-                    </div>
-                    <div class="col-sm-4"  style="font-size:20px;">
-                        密码：<input type="password" name="passWord" value="111111">
-                    </div>
-                    <div class="col-sm-4">
+                    <div class="col-xs-3">
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-sm-4">
+                <div class="row" style="text-align: center">
+                    <div class="col-xs-3">
                     </div>
-                    <div class="col-sm-4"  style="font-size:20px;text-align:center;margin-top:5%;margin-bottom:5%;">
-                        <input type="submit" value="登录">
+                    <div class="col-xs-6"  style="font-size:20px;text-align: center">
+                        <i class="fa fa-lock" aria-hidden="true" style="font-size:25px;">&nbsp;</i><input type="password" name="passWord" value="111111">
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-xs-3">
+                    </div>
+                </div>
+
+                <div class="row"  style="text-align: center">
+                    <div class="col-xs-3">
+                    </div>
+                    <div class="col-xs-6"  style="font-size:20px;text-align:center;margin-top:5%;margin-bottom:5%;">
+                        <i class="fa fa-sign-in" aria-hidden="true">&nbsp;</i><input type="submit" value="登录">
+                    </div>
+                    <div class="col-xs-3">
                     </div>
                 </div>
             </div>

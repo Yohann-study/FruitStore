@@ -1,6 +1,7 @@
 package com.yohann.dao;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 基础dao封装一些简单的方法
@@ -43,4 +44,17 @@ public interface BaseDao<T>{
      * 更新一条信息
      */
     void update(T t);
+
+    /**
+     * 查询数据条数
+     * @return
+     */
+    long count();
+
+    /**
+     * 分页查询
+     * @param map
+     * @return
+     */
+    List<T> findByPager(Map<String, Object> map);
 }

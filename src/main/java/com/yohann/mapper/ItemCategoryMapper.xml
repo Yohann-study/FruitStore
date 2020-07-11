@@ -54,4 +54,14 @@
     <delete id="deleteById" parameterType="int">
         delete from item_category where id = #{id}
     </delete>
+
+    <!-- 查询数据条数 -->
+    <select id="count" resultType="long">
+        select count(*) from item_category
+    </select>
+
+    <!-- 分页查询 -->
+    <select id="findByPager" resultType="com.yohann.entity.ItemCategory" parameterType="map">
+        select * from item_category limit #{starIndex}, #{pageSize}
+    </select>
 </mapper>

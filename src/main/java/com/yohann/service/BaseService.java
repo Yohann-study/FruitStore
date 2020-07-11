@@ -1,8 +1,10 @@
 package com.yohann.service;
 
 import com.yohann.dao.BaseDao;
+import com.yohann.utils.Pager;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 服务层接口基类
@@ -45,4 +47,17 @@ public interface BaseService<T>{
      * 更新一条信息
      */
     void update(T t);
+
+    /**
+     * 查询数据条数
+     * @return
+     */
+    long count();
+
+    /**
+     * 分页查询
+     * @param pager
+     * @return
+     */
+    List<T> findByPager(Pager pager);
 }
