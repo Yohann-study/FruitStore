@@ -5,6 +5,7 @@ import com.yohann.service.ItemCategoryService;
 import com.yohann.utils.Pager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -24,18 +25,18 @@ public class ItemCategoryController extends BaseController {
 
     @RequestMapping("itemcategory")
     public String findAll(Model model,Pager pager){
-        if (pager.getPage() == 0){
+        if (pager.getPageNo() == 0){
             pager = new Pager();
-            pager.setPage(1);
+            pager.setPageNo(1);
         }
-        model.addAttribute("list", itemCategoryService.findByPager(pager));
-        return "itemcategory/itemcategory";
-    }
+        Pager<ItemCategory> result = new Pager<>();
+        result.setPageNo(pager.getPageNo());
+        result.setPageSize(pager.getPageSize());
+        result.setRows(itemCategoryService.findByPager(pager));
+        result.setTotal(itemCategoryService.count()/pager.getPageSize()+1);
 
-    @RequestMapping("page")
-    public String findByPage(Pager pager, HttpServletRequest request){
-        List<ItemCategory> itemCategories = itemCategoryService.findByPager(pager);
-        request.setAttribute("itemCategories", itemCategories);
+        model.addAttribute("result", result);
+
         return "itemcategory/itemcategory";
     }
 }

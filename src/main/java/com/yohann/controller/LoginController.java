@@ -58,4 +58,13 @@ public class LoginController extends BaseController {
 
         return "redirect:/login/admin";
     }
+
+    /**
+     * 欢迎界面
+     * @return
+     */
+    @RequestMapping("welcome")
+    public String welcome(){
+        return "index";
+    }
 }
