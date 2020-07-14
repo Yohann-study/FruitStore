@@ -2,6 +2,41 @@ package com.yohann.dao;
 
 import com.yohann.entity.ItemCategory;
 
-public interface ItemCategoryDao extends BaseDao<ItemCategory> {
+import java.util.List;
+import java.util.Map;
 
+public interface ItemCategoryDao extends BaseDao<ItemCategory> {
+    /**
+     * 查询一级目录
+     * @return
+     */
+    List<ItemCategory> findFirstDirectory(Map<String, Object> map);
+
+    /**
+     * 查询二级目录
+     * @return
+     */
+    List<ItemCategory> findSecondDirectory(Map<String, Object> map);
+
+    /**
+     * 统计一级分类
+     * @return
+     */
+    long countFirstDirectory();
+
+    /**
+     * 统计二级分类
+     * @return
+     */
+    long countSecondDirectory(Map<String, Object> map);
+
+    /**
+     * 删除一级分类
+     */
+    void deleteFirstDirectory(int id);
+
+    /**
+     * 删除二级分类
+     */
+    void deleteSecondDirectory(int pid);
 }

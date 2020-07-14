@@ -29,7 +29,7 @@
     <div class="right">
         <div class="add" style="height: 8%;margin:15px 20px 0px 20px;font-size: 18px;">
             <%--功能区域--%>
-            <a href="/itemcategory/add"><span class="glyphicon glyphicon-plus"></span> 添加分类</a>
+            <a href="/itemcategory/add2?pid=${pid}"><span class="glyphicon glyphicon-plus"></span> 添加二级分类</a>
         </div>
         <div class="table" style="height: 70%;border: #0f0f0f 4px;">
             <%--数据表--%>
@@ -47,9 +47,8 @@
                         <th>${itemCategory.id}</th>
                         <td>${itemCategory.name}</td>
                         <td>
-                            <a href="/itemcategory/itemcategory2?id=${itemCategory.id}"><span class="glyphicon glyphicon-eye-open"></span> 二级类目 &nbsp;</a>
-                            <a href="/itemcategory/update?id=${itemCategory.id}"><span class="glyphicon glyphicon-pencil"></span> 修改 &nbsp;</a>
-                            <a href="/itemcategory/delete?id=${itemCategory.id}"><span class="glyphicon glyphicon-trash"></span> 删除 &nbsp;</a>
+                            <a href="/itemcategory/update2?id=${itemCategory.id}"><span class="glyphicon glyphicon-pencil"></span> 修改 &nbsp;</a>
+                            <a href="/itemcategory/delete2?id=${itemCategory.id}&pid=${itemCategory.pid}"><span class="glyphicon glyphicon-trash"></span> 删除 &nbsp;</a>
                         </td>
                     </tr>
                 </c:forEach>

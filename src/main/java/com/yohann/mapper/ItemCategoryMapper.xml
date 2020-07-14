@@ -64,4 +64,34 @@
     <select id="findByPager" resultType="com.yohann.entity.ItemCategory" parameterType="map">
         select * from item_category limit #{starIndex}, #{pageSize}
     </select>
+
+    <!-- 分页查询一级目录 -->
+    <select id="findFirstDirectory" resultType="com.yohann.entity.ItemCategory" parameterType="map">
+        select * from item_category  where isDelete = 0 and pid = 0 order by id limit #{starIndex}, #{pageSize}
+    </select>
+
+    <!-- 分页查询二级目录 -->
+    <select id="findSecondDirectory" resultType="com.yohann.entity.ItemCategory" parameterType="map">
+        select * from item_category  where isDelete=0 and pid=#{pid} order by id limit #{starIndex}, #{pageSize}
+    </select>
+
+    <!-- 查询一级数据条数 -->
+    <select id="countFirstDirectory" resultType="long">
+        select count(*) from item_category  where isDelete = 0 and pid = 0
+    </select>
+
+    <!-- 查询二级数据条数 -->
+    <select id="countSecondDirectory" resultType="long" parameterType="map">
+        select count(*) from item_category  where isDelete=0 and pid=#{pid}
+    </select>
+
+    <!-- 删除自身分类 -->
+    <update id="deleteFirstDirectory" parameterType="int">
+        update item_category  set isDelete=1 where id=#{id}
+    </update>
+
+    <!-- 删除下级分类 -->
+    <update id="deleteSecondDirectory" parameterType="int">
+        update item_category  set isDelete=1 where pid=#{pid}
+    </update>
 </mapper>
