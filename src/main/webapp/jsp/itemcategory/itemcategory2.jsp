@@ -44,7 +44,7 @@
                 <tbody>
                 <c:forEach items="${result.rows}" var="itemCategory">
                     <tr style="font-size: 13px;">
-                        <th>${itemCategory.id}</th>
+                        <td>${itemCategory.id}</td>
                         <td>${itemCategory.name}</td>
                         <td>
                             <a href="/itemcategory/update2?id=${itemCategory.id}"><span class="glyphicon glyphicon-pencil"></span> 修改 &nbsp;</a>

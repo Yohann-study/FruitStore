@@ -1,5 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@include file="/master/master.jsp"%>
 <%--
   Created by IntelliJ IDEA.
   User: Yohann
@@ -8,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@include file="/master/master.jsp"%>
 <html>
 <head>
     <title>类目管理</title>
@@ -44,7 +44,7 @@
                 <tbody>
                 <c:forEach items="${result.rows}" var="itemCategory">
                     <tr style="font-size: 13px;">
-                        <th>${itemCategory.id}</th>
+                        <td>${itemCategory.id}</td>
                         <td>${itemCategory.name}</td>
                         <td>
                             <a href="/itemcategory/itemcategory2?id=${itemCategory.id}"><span class="glyphicon glyphicon-eye-open"></span> 二级类目 &nbsp;</a>

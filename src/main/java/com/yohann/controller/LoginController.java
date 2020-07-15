@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Controller
 @RequestMapping("/login")
-public class LoginController extends BaseController {
+public class LoginController{
 
     @Autowired
     private ManageService manageService;

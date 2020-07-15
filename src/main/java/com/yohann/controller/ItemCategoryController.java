@@ -5,20 +5,16 @@ import com.yohann.service.ItemCategoryService;
 import com.yohann.utils.Pager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import org.springframework.ui.Model;
-import java.util.List;
 
 /**
  * 类目管理控制器
  */
 @Controller
 @RequestMapping("/itemcategory")
-public class ItemCategoryController extends BaseController {
+public class ItemCategoryController{
 
     @Autowired
     private ItemCategoryService itemCategoryService;
@@ -31,21 +27,16 @@ public class ItemCategoryController extends BaseController {
      */
     @RequestMapping("itemcategory")
     public String findAll(Model model,Pager pager){
-        if (pager.getPageNo() == 0){
-            pager = new Pager();
-            pager.setPageNo(1);
-        }
+        //将页码设置为1
+        pager = pager.pageNoTo0(pager);
+
         Pager<ItemCategory> result = new Pager<>();
         result.setPageNo(pager.getPageNo());
         result.setPageSize(pager.getPageSize());
         result.setRows(itemCategoryService.findFirstDirectory(pager));
 
-        long total;
-        if(itemCategoryService.countFirstDirectory()%pager.getPageSize() == 0)
-            total = itemCategoryService.countFirstDirectory()/pager.getPageSize();
-        else
-            total = itemCategoryService.countFirstDirectory()/pager.getPageSize()+1;
-        result.setTotal(total);
+        //计算页数
+        result.setTotal(result.ComputationalPages(result.getRows(),result.getPageSize()));
 
         model.addAttribute("result", result);
 
@@ -124,21 +115,16 @@ public class ItemCategoryController extends BaseController {
      */
     @RequestMapping("itemcategory2")
     public String findAll2(Model model,Pager pager,ItemCategory itemCategory){
-        if (pager.getPageNo() == 0){
-            pager = new Pager();
-            pager.setPageNo(1);
-        }
+        //将页码设置为1
+        pager = pager.pageNoTo0(pager);
+
         Pager<ItemCategory> result = new Pager<>();
         result.setPageNo(pager.getPageNo());
         result.setPageSize(pager.getPageSize());
         result.setRows(itemCategoryService.findSecondDirectory(pager, itemCategory));
 
-        long total;
-        if(itemCategoryService.countSecondDirectory(itemCategory)%pager.getPageSize() == 0)
-            total = itemCategoryService.countSecondDirectory(itemCategory)/pager.getPageSize();
-        else
-            total = itemCategoryService.countSecondDirectory(itemCategory)/pager.getPageSize()+1;
-        result.setTotal(total);
+        //计算页数
+        result.setTotal(result.ComputationalPages(result.getRows(),result.getPageSize()));
 
         model.addAttribute("result", result);
         model.addAttribute("pid", itemCategory.getId());

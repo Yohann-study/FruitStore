@@ -51,7 +51,7 @@
     </update>
 
     <!-- 按照ID删除 -->
-    <delete id="deleteById" parameterType="int">
+    <delete id="deleteById" parameterType="long">
         delete from item_category where id = #{id}
     </delete>
 

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ManageServiceImpl extends BaseServiceImpl<Manage> implements ManageService {
     @Autowired
-    ManageDao manageDao;
+    private ManageDao manageDao;
 
     @Override
     public BaseDao<Manage> getBaseDao() {

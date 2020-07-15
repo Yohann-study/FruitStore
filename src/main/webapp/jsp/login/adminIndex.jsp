@@ -60,7 +60,7 @@
     <div class="left">
         <ul class="list-group">
             <li class="list-group-item"><a href="javascript:itemcategory()"><span class="glyphicon glyphicon-triangle-right"></span>类目管理</a></li>
-            <li class="list-group-item"><a><span class="glyphicon glyphicon-triangle-right"></span>用户管理</a></li>
+            <li class="list-group-item"><a href="javascript:user()"><span class="glyphicon glyphicon-triangle-right"></span>用户管理</a></li>
             <li class="list-group-item"><a><span class="glyphicon glyphicon-triangle-right"></span>商品管理</a></li>
             <li class="list-group-item"><a><span class="glyphicon glyphicon-triangle-right"></span>订单管理</a></li>
             <li class="list-group-item"><a><span class="glyphicon glyphicon-triangle-right"></span>公告管理</a></li>
@@ -75,6 +75,9 @@
     <script>
         function itemcategory() {
             $("#iframe").attr("src", "/itemcategory/itemcategory");
+        }
+        function user() {
+            $("#iframe").attr("src", "/user/user");
         }
     </script>
 </body>

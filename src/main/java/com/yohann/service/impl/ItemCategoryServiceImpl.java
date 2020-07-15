@@ -15,7 +15,7 @@ import java.util.Map;
 @Service
 public class ItemCategoryServiceImpl extends BaseServiceImpl<ItemCategory> implements ItemCategoryService {
     @Autowired
-    ItemCategoryDao itemCategoryDao;
+    private ItemCategoryDao itemCategoryDao;
 
     @Override
     public BaseDao<ItemCategory> getBaseDao() {
