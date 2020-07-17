@@ -60,4 +60,14 @@ public  abstract class BaseServiceImpl<T> implements BaseService<T>{
         map.put("pageSize", pager.getPageSize());
         return this.getBaseDao().findByPager(map);
     }
+
+    @Override
+    public List<T> findLike(Pager pager, String key) {
+        Map<String, Object> map = new HashMap();
+        map.put("starIndex", (pager.getPageNo()-1) * pager.getPageSize());
+        map.put("pageSize", pager.getPageSize());
+        map.put("key", key);
+
+        return this.getBaseDao().findLike(map);
+    }
 }

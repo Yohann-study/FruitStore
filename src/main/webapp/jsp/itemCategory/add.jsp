@@ -6,19 +6,18 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="/master/master.jsp"%>
 <html>
 <head>
-    <title>添加二级分类</title>
+    <title>添加分类</title>
 </head>
 <body style="background-color: #9acfea;">
     <div class="right" style="text-align: center;">
         <div style="margin-top: 10%">
-            <h3>添加二级分类</h3>
+            <h3>添加一级分类</h3>
         </div>
-        <form action="/itemcategory/exAdd2?pid=${pid}" method="post" style="margin-top: 5%">
-            名称：<input type="text" name="name">&nbsp;
+        <form action="/itemCategory/exAdd" method="post" style="margin-top: 5%">
+            名称：<input type="text" name="name" placeholder="请输入名称" >&nbsp;
             <input type="submit" value="添加">
         </form>
     </div>

@@ -1,16 +1,15 @@
 <%--
   Created by IntelliJ IDEA.
   User: Yohann
-  Date: 2020/7/11
-  Time: 18:22
+  Date: 2020/7/17
+  Time: 17:42
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="/master/master.jsp"%>
 <html>
 <head>
-    <title>用户管理</title>
+    <title>订单细节</title>
     <style>
         th{
             text-align: center;
@@ -27,35 +26,35 @@
 </head>
 <body  style="background-color: #9acfea;">
     <div class="right">
-        <div class="add" style="height: 8%;margin:15px 20px 0px 20px;font-size: 18px;">
-            <%--搜索区域--%>
-            <form action="/user/user" method="post">
-                <input type="text" placeholder="请输入用户名" name="userName">
-                <input type="submit" value="搜索">
-            </form>
-        </div>
-        <div class="table" style="height: 70%;border: #0f0f0f 4px;">
+        <div class="table" style="height: 80%;border: #0f0f0f 4px;">
             <%--数据表--%>
             <table class="table" style="text-align: center;font-size: 15px;">
                 <thead>
                 <tr>
-                    <th scope="col">用户名</th>
-                    <th scope="col">手机号</th>
-                    <th scope="col">真实姓名</th>
-                    <th scope="col">性别</th>
-                    <th scope="col">邮箱</th>
-                    <th scope="col">地址</th>
+                    <th scope="col">商品名称</th>
+                    <th scope="col">商品主图</th>
+                    <th scope="col">商品单价</th>
+                    <th scope="col">购买数量</th>
+                    <th scope="col">小计</th>
+                    <th scope="col">状态</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${result.rows}" var="user">
+                <c:forEach items="${result.rows}" var="data">
                     <tr style="font-size: 13px;">
-                        <td>${user.userName}</td>
-                        <td>${user.phone}</td>
-                        <td>${user.realName}</td>
-                        <td>${user.sex}</td>
-                        <td>${user.email}</td>
-                        <td>${user.address}</td>
+                        <td>${data.item.name}</td>
+                        <td><img src="${data.item.url1}" alt="" style="width: 50px;height: 50px;"></td>
+                        <td>${data.item.price}</td>
+                        <td>${data.num}</td>
+                        <td>${data.total}</td>
+                        <td style="color: red">
+                            <c:if test="${data.status == 0}">
+                                未退货
+                            </c:if>
+                            <c:if test="${data.status == 1}">
+                                已退货
+                            </c:if>
+                        </td>
                     </tr>
                 </c:forEach>
                 </tbody>
@@ -73,7 +72,7 @@
                                     <li><a style="color: red;">${i}</a></li>
                                 </c:if>
                                 <c:if test="${result.pageNo != i}">
-                                    <li><a href="/user/user?pageNo=${i}">${i}</a></li>
+                                    <li><a href="/orderDetail/orderDetail?pageNo=${i}&orderId=${id}">${i}</a></li>
                                 </c:if>
                             </c:forEach>
                         </c:when>
@@ -84,7 +83,7 @@
                                     <li><a style="color: red;">${i}</a></li>
                                 </c:if>
                                 <c:if test="${result.pageNo != i}">
-                                    <li><a href="/user/user?pageNo=${i}">${i}</a></li>
+                                    <li><a href="/orderDetail/orderDetail?pageNo=${i}&orderId=${id}">${i}</a></li>
                                 </c:if>
                             </c:forEach>
                         </c:when>
@@ -95,7 +94,7 @@
                                     <li><a style="color: red;">${i}</a></li>
                                 </c:if>
                                 <c:if test="${result.pageNo != i}">
-                                    <li><a href="/user/user?pageNo=${i}">${i}</a></li>
+                                    <li><a href="/orderDetail/orderDetail?pageNo=${i}&orderId=${id}">${i}</a></li>
                                 </c:if>
                             </c:forEach>
                         </c:when>
@@ -106,7 +105,7 @@
                                     <li><a style="color: red;">${i}</a></li>
                                 </c:if>
                                 <c:if test="${result.pageNo != i}">
-                                    <li><a href="/user/user?pageNo=${i}">${i}</a></li>
+                                    <li><a href="/orderDetail/orderDetail?pageNo=${i}&orderId=${id}">${i}</a></li>
                                 </c:if>
                             </c:forEach>
                         </c:when>

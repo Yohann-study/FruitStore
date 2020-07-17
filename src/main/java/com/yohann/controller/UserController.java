@@ -28,10 +28,10 @@ public class UserController {
         if (user.getUserName() == null)
             result.setRows(userService.findByPager(pager));
         else
-            result.setRows(userService.findLike(pager, user));
+            result.setRows(userService.findLike(pager, user.getUserName()));
 
         //计算页数
-        result.setTotal(result.ComputationalPages(result.getRows(),result.getPageSize()));
+        result.setTotal(result.ComputationalPages(userService.count(),result.getPageSize()));
 
         model.addAttribute("result", result);
 

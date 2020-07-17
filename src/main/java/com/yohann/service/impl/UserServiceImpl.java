@@ -23,13 +23,4 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
     public BaseDao<User> getBaseDao() {
         return userDao;
     }
-
-    @Override
-    public List<User> findLike(Pager pager, User user) {
-        Map<String, Object> map = new HashMap();
-        map.put("starIndex", (pager.getPageNo()-1) * pager.getPageSize());
-        map.put("pageSize", pager.getPageSize());
-        map.put("userName", user.getUserName());
-        return userDao.findLike(map);
-    }
 }

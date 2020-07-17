@@ -7,13 +7,13 @@ import java.util.Map;
 
 public interface ItemCategoryDao extends BaseDao<ItemCategory> {
     /**
-     * 查询一级目录
+     * 分页查询一级目录
      * @return
      */
     List<ItemCategory> findFirstDirectory(Map<String, Object> map);
 
     /**
-     * 查询二级目录
+     * 分页查询二级目录
      * @return
      */
     List<ItemCategory> findSecondDirectory(Map<String, Object> map);
@@ -39,4 +39,22 @@ public interface ItemCategoryDao extends BaseDao<ItemCategory> {
      * 删除二级分类
      */
     void deleteSecondDirectory(int pid);
+
+    /**
+     * 查询一级目录
+     * @return
+     */
+    List<ItemCategory> findAllFirstDirectory();
+
+    /**
+     * 查询二级目录
+     * @return
+     */
+    List<ItemCategory> findAllSecondDirectory(Map<String, Object> map);
+
+    /**
+     * 查询二级目录
+     * @return
+     */
+    List<ItemCategory> findAllSecondDirectory2();
 }

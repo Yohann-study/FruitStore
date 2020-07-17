@@ -8,13 +8,13 @@ import java.util.Map;
 
 public interface ItemCategoryService extends BaseService<ItemCategory> {
     /**
-     * 查询一级目录
+     * 分页查询一级目录
      * @return
      */
     List<ItemCategory> findFirstDirectory(Pager pager);
 
     /**
-     * 查询二级目录
+     * 分页查询二级目录
      * @return
      */
     List<ItemCategory> findSecondDirectory(Pager pager, ItemCategory itemCategory);
@@ -40,4 +40,22 @@ public interface ItemCategoryService extends BaseService<ItemCategory> {
      * 删除二级分类
      */
     void deleteSecondDirectory(int id);
+
+    /**
+     * 查询一级目录
+     * @return
+     */
+    List<ItemCategory> findAllFirstDirectory();
+
+    /**
+     * 查询二级目录
+     * @return
+     */
+    List<ItemCategory> findAllSecondDirectory(ItemCategory itemCategory);
+
+    /**
+     * 查询二级目录
+     * @return
+     */
+    List<ItemCategory> findAllSecondDirectory2();
 }

@@ -10,7 +10,7 @@
 <%@include file="/master/master.jsp"%>
 <html>
 <head>
-    <title>用户管理</title>
+    <title>留言管理</title>
     <style>
         th{
             text-align: center;
@@ -29,8 +29,8 @@
     <div class="right">
         <div class="add" style="height: 8%;margin:15px 20px 0px 20px;font-size: 18px;">
             <%--搜索区域--%>
-            <form action="/user/user" method="post">
-                <input type="text" placeholder="请输入用户名" name="userName">
+            <form action="/message/message" method="post">
+                <input type="text" placeholder="请输入留言人姓名" name="name">
                 <input type="submit" value="搜索">
             </form>
         </div>
@@ -39,23 +39,21 @@
             <table class="table" style="text-align: center;font-size: 15px;">
                 <thead>
                 <tr>
-                    <th scope="col">用户名</th>
+                    <th scope="col">留言人姓名</th>
                     <th scope="col">手机号</th>
-                    <th scope="col">真实姓名</th>
-                    <th scope="col">性别</th>
-                    <th scope="col">邮箱</th>
-                    <th scope="col">地址</th>
+                    <th scope="col">留言内容</th>
+                    <th scope="col">操作</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${result.rows}" var="user">
+                <c:forEach items="${result.rows}" var="data">
                     <tr style="font-size: 13px;">
-                        <td>${user.userName}</td>
-                        <td>${user.phone}</td>
-                        <td>${user.realName}</td>
-                        <td>${user.sex}</td>
-                        <td>${user.email}</td>
-                        <td>${user.address}</td>
+                        <td>${data.name}</td>
+                        <td>${data.phone}</td>
+                        <td>${data.content}</td>
+                        <td>
+                            <a href="/message/delete?id=${data.id}"><span class="glyphicon glyphicon-trash"></span> 删除 &nbsp;</a>
+                        </td>
                     </tr>
                 </c:forEach>
                 </tbody>

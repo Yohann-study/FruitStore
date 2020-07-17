@@ -12,7 +12,6 @@
     <title>管理员首页</title>
 </head>
 <body>
-<%--    <jsp:include page="${root}/master/admin-master.jsp"></jsp:include>--%>
     <style>
         body{
             background-color: rgb(126,222,222);
@@ -59,12 +58,12 @@
 
     <div class="left">
         <ul class="list-group">
-            <li class="list-group-item"><a href="javascript:itemcategory()"><span class="glyphicon glyphicon-triangle-right"></span>类目管理</a></li>
+            <li class="list-group-item"><a href="javascript:itemCategory()"><span class="glyphicon glyphicon-triangle-right"></span>类目管理</a></li>
             <li class="list-group-item"><a href="javascript:user()"><span class="glyphicon glyphicon-triangle-right"></span>用户管理</a></li>
-            <li class="list-group-item"><a><span class="glyphicon glyphicon-triangle-right"></span>商品管理</a></li>
-            <li class="list-group-item"><a><span class="glyphicon glyphicon-triangle-right"></span>订单管理</a></li>
-            <li class="list-group-item"><a><span class="glyphicon glyphicon-triangle-right"></span>公告管理</a></li>
-            <li class="list-group-item"><a><span class="glyphicon glyphicon-triangle-right"></span>留言管理</a></li>
+            <li class="list-group-item"><a href="javascript:item()"><span class="glyphicon glyphicon-triangle-right"></span>商品管理</a></li>
+            <li class="list-group-item"><a href="javascript:itemOrder()"><span class="glyphicon glyphicon-triangle-right"></span>订单管理</a></li>
+            <li class="list-group-item"><a href="javascript:news()"><span class="glyphicon glyphicon-triangle-right"></span>公告管理</a></li>
+            <li class="list-group-item"><a href="javascript:message()"><span class="glyphicon glyphicon-triangle-right"></span>留言管理</a></li>
         </ul>
     </div>
 
@@ -73,11 +72,23 @@
     </div>
 
     <script>
-        function itemcategory() {
-            $("#iframe").attr("src", "/itemcategory/itemcategory");
+        function itemCategory() {
+            $("#iframe").attr("src", "/itemCategory/itemCategory");
         }
         function user() {
             $("#iframe").attr("src", "/user/user");
+        }
+        function item() {
+            $("#iframe").attr("src", "/item/item");
+        }
+        function itemOrder() {
+            $("#iframe").attr("src", "/itemOrder/itemOrder");
+        }
+        function news() {
+            $("#iframe").attr("src", "/news/news");
+        }
+        function message() {
+            $("#iframe").attr("src", "/message/message");
         }
     </script>
 </body>

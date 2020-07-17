@@ -24,19 +24,21 @@ public class ItemCategoryServiceImpl extends BaseServiceImpl<ItemCategory> imple
 
     /**
      * 查询一级目录
+     *
      * @param pager
      * @return
      */
     @Override
     public List<ItemCategory> findFirstDirectory(Pager pager) {
         Map<String, Object> map = new HashMap();
-        map.put("starIndex", (pager.getPageNo()-1) * pager.getPageSize());
+        map.put("starIndex", (pager.getPageNo() - 1) * pager.getPageSize());
         map.put("pageSize", pager.getPageSize());
         return this.itemCategoryDao.findFirstDirectory(map);
     }
 
     /**
      * 查询二级目录
+     *
      * @param pager
      * @param itemCategory
      * @return
@@ -44,7 +46,7 @@ public class ItemCategoryServiceImpl extends BaseServiceImpl<ItemCategory> imple
     @Override
     public List<ItemCategory> findSecondDirectory(Pager pager, ItemCategory itemCategory) {
         Map<String, Object> map = new HashMap();
-        map.put("starIndex", (pager.getPageNo()-1) * pager.getPageSize());
+        map.put("starIndex", (pager.getPageNo() - 1) * pager.getPageSize());
         map.put("pageSize", pager.getPageSize());
         map.put("pid", itemCategory.getId());
         return itemCategoryDao.findSecondDirectory(map);
@@ -71,4 +73,23 @@ public class ItemCategoryServiceImpl extends BaseServiceImpl<ItemCategory> imple
     public void deleteSecondDirectory(int pid) {
         itemCategoryDao.deleteSecondDirectory(pid);
     }
+
+    @Override
+    public List<ItemCategory> findAllFirstDirectory() {
+        return itemCategoryDao.findAllFirstDirectory();
+    }
+
+    @Override
+    public List<ItemCategory> findAllSecondDirectory(ItemCategory itemCategory) {
+        Map<String, Object> map = new HashMap();
+        map.put("pid", itemCategory.getId());
+
+        return itemCategoryDao.findAllSecondDirectory(map);
+    }
+
+    @Override
+    public List<ItemCategory> findAllSecondDirectory2() {
+        return itemCategoryDao.findAllSecondDirectory2();
+    }
 }
+

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yohann.dao.MessageDao">
+    <!-- 查询所有 -->
+    <select id="findAll" resultType="com.yohann.entity.Message">
+        select * from message
+    </select>
+
+    <!-- 按对象查询 -->
+    <select id="findEntity" resultType="com.yohann.entity.Message" parameterType="com.yohann.entity.Message">
+        select * from message
+        <trim prefix="where" prefixOverrides="and">
+            <if test="id != null">
+                id = #{id}
+            </if>
+            <if test="name != null">
+                and name = #{name}
+            </if>
+            <if test="content != null">
+                and content = #{content}
+            </if>
+            <if test="phone != null">
+                and phone = #{phone}
+            </if>
+        </trim>
+    </select>
+
+    <!-- 按ID查询 -->
+    <select id="findById" resultType="com.yohann.entity.Message" parameterType="long">
+        select * from message where id = #{id}
+    </select>
+    
+    <!-- 插入 -->
+    <insert id="insert" parameterType="com.yohann.entity.Message">
+        insert into message(name,content,phone) values (#{name},#{content},#{phone}})
+    </insert>
+
+    <!-- 修改 -->
+    <update id="update" parameterType="com.yohann.entity.Message">
+        update message
+        <trim prefix="set" prefixOverrides=",">
+            <if test="name != null">
+                name = #{name}
+            </if>
+            <if test="content != null">
+                , content = #{content}
+            </if>
+            <if test="phone != null">
+                , phone = #{phone}
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <!-- 按照ID删除 -->
+    <delete id="deleteById" parameterType="int">
+        delete from message where id = #{id}
+    </delete>
+
+    <!-- 查询数据条数 -->
+    <select id="count" resultType="long">
+        select count(*) from message
+    </select>
+
+    <!-- 分页查询 -->
+    <select id="findByPager" resultType="com.yohann.entity.Message" parameterType="map">
+        select * from message limit #{starIndex}, #{pageSize}
+    </select>
+
+    <!-- 模糊搜索用户名 -->
+    <select id="findLike" resultType="com.yohann.entity.Message" parameterType="map">
+        select * from message where name like '%${key}%' limit #{starIndex}, #{pageSize}
+    </select>
+</mapper>

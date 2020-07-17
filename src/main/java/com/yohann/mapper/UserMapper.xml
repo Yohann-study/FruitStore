@@ -91,6 +91,6 @@
 
     <!-- 模糊搜索用户名 -->
     <select id="findLike" resultType="com.yohann.entity.User" parameterType="map">
-        select * from user where userName like '%${userName}%' limit #{starIndex}, #{pageSize}
+        select * from user where userName like '%${key}%' limit #{starIndex}, #{pageSize}
     </select>
 </mapper>

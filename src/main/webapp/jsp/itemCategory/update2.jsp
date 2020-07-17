@@ -10,14 +10,14 @@
 <%@include file="/master/master.jsp"%>
 <html>
 <head>
-    <title>更新一级分类</title>
+    <title>更新二级分类</title>
 </head>
 <body style="background-color: #9acfea;">
     <div class="right" style="text-align: center;">
         <div style="margin-top: 10%">
-            <h3>修改一级分类</h3>
+            <h3>修改二级分类</h3>
         </div>
-        <form action="/itemcategory/exUpdate?id=${obj.id}" method="post" style="margin-top: 5%">
+        <form action="/itemCategory/exUpdate2?id=${obj.id}&pid=${obj.pid}" method="post" style="margin-top: 5%">
             名称：<input type="text" name="name" value="${obj.name}">&nbsp;
             <input type="submit" value="修改">
         </form>

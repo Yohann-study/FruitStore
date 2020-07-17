@@ -13,7 +13,7 @@ import org.springframework.ui.Model;
  * 类目管理控制器
  */
 @Controller
-@RequestMapping("/itemcategory")
+@RequestMapping("/itemCategory")
 public class ItemCategoryController{
 
     @Autowired
@@ -25,7 +25,7 @@ public class ItemCategoryController{
      * @param pager
      * @return
      */
-    @RequestMapping("itemcategory")
+    @RequestMapping("itemCategory")
     public String findAll(Model model,Pager pager){
         //将页码设置为1
         pager = pager.pageNoTo0(pager);
@@ -36,11 +36,11 @@ public class ItemCategoryController{
         result.setRows(itemCategoryService.findFirstDirectory(pager));
 
         //计算页数
-        result.setTotal(result.ComputationalPages(result.getRows(),result.getPageSize()));
+        result.setTotal(result.ComputationalPages(itemCategoryService.countFirstDirectory(),result.getPageSize()));
 
         model.addAttribute("result", result);
 
-        return "itemcategory/itemcategory";
+        return "itemCategory/itemCategory";
     }
 
     /**
@@ -49,7 +49,7 @@ public class ItemCategoryController{
      */
     @RequestMapping("add")
     public String Add(){
-        return "itemcategory/add";
+        return "itemCategory/add";
     }
 
     /**
@@ -61,7 +61,7 @@ public class ItemCategoryController{
     public String exAdd(ItemCategory itemCategory){
         itemCategoryService.insert(itemCategory);
 
-        return "redirect:/itemcategory/itemcategory.action";
+        return "redirect:/itemCategory/itemCategory.action";
     }
 
 
@@ -78,7 +78,7 @@ public class ItemCategoryController{
         //将下级也删除
         itemCategoryService.deleteSecondDirectory((int)itemCategory.getId());
 
-        return "redirect:/itemcategory/itemcategory.action";
+        return "redirect:/itemCategory/itemCategory.action";
     }
 
     /**
@@ -91,7 +91,7 @@ public class ItemCategoryController{
     public String update(Integer id,Model model){
         ItemCategory itemCategory = itemCategoryService.findById(id);
         model.addAttribute("obj",itemCategory);
-        return "itemcategory/update";
+        return "itemCategory/update";
     }
 
     /**
@@ -103,7 +103,7 @@ public class ItemCategoryController{
     public String exUpdate(ItemCategory itemCategory){
         itemCategoryService.update(itemCategory);
 
-        return "redirect:/itemcategory/itemcategory.action";
+        return "redirect:/itemCategory/itemCategory.action";
     }
 
     /**
@@ -113,7 +113,7 @@ public class ItemCategoryController{
      * @param itemCategory
      * @return
      */
-    @RequestMapping("itemcategory2")
+    @RequestMapping("itemCategory2")
     public String findAll2(Model model,Pager pager,ItemCategory itemCategory){
         //将页码设置为1
         pager = pager.pageNoTo0(pager);
@@ -124,12 +124,12 @@ public class ItemCategoryController{
         result.setRows(itemCategoryService.findSecondDirectory(pager, itemCategory));
 
         //计算页数
-        result.setTotal(result.ComputationalPages(result.getRows(),result.getPageSize()));
+        result.setTotal(result.ComputationalPages(itemCategoryService.countSecondDirectory(itemCategory),result.getPageSize()));
 
         model.addAttribute("result", result);
         model.addAttribute("pid", itemCategory.getId());
 
-        return "itemcategory/itemcategory2";
+        return "itemCategory/itemCategory2";
     }
 
     /**
@@ -141,7 +141,7 @@ public class ItemCategoryController{
     @RequestMapping("add2")
     public String add2(int pid,Model model){
         model.addAttribute("pid",pid);
-        return "itemcategory/add2";
+        return "itemCategory/add2";
     }
 
     /**
@@ -153,7 +153,7 @@ public class ItemCategoryController{
     public String exAdd2(ItemCategory itemCategory){
         itemCategoryService.insert(itemCategory);
 
-        return "redirect:/itemcategory/itemcategory2.action?id="+itemCategory.getPid();
+        return "redirect:/itemCategory/itemCategory2.action?id="+itemCategory.getPid();
     }
 
     /**
@@ -166,7 +166,7 @@ public class ItemCategoryController{
     public String update2(Integer id,Model model){
         ItemCategory itemCategory = itemCategoryService.findById(id);
         model.addAttribute("obj",itemCategory);
-        return "itemcategory/update2";
+        return "itemCategory/update2";
     }
 
     /**
@@ -178,7 +178,7 @@ public class ItemCategoryController{
     public String exUpdate2(ItemCategory itemCategory){
         itemCategoryService.update(itemCategory);
 
-        return "redirect:/itemcategory/itemcategory2.action?id="+itemCategory.getPid();
+        return "redirect:/itemCategory/itemCategory2.action?id="+itemCategory.getPid();
     }
 
     /**
@@ -191,6 +191,6 @@ public class ItemCategoryController{
         //删除本身
         itemCategoryService.deleteFirstDirectory((int)itemCategory.getId());
 
-        return "redirect:/itemcategory/itemcategory2.action?id="+itemCategory.getPid();
+        return "redirect:/itemCategory/itemCategory2.action?id="+itemCategory.getPid();
     }
 }

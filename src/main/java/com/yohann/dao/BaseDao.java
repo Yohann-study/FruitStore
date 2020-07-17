@@ -57,4 +57,10 @@ public interface BaseDao<T>{
      * @return
      */
     List<T> findByPager(Map<String, Object> map);
+
+    /**
+     * 模糊搜索
+     * @return
+     */
+    List<T> findLike(Map<String, Object> map);
 }

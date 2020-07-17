@@ -60,4 +60,10 @@ public interface BaseService<T>{
      * @return
      */
     List<T> findByPager(Pager pager);
+
+    /**
+     * 模糊搜索
+     * @return
+     */
+    List<T> findLike(Pager pager, String key);
 }

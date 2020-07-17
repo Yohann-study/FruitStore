@@ -11,8 +11,11 @@
     <select id="findEntity" resultType="com.yohann.entity.ItemCategory" parameterType="com.yohann.entity.ItemCategory">
         select * from item_category
         <trim prefix="where" prefixOverrides="and">
+            <if test="id != null">
+                id = #{id}
+            </if>
             <if test="name != null">
-                name = #{name}
+                and name = #{name}
             </if>
             <if test="pid != null">
                 and pid = #{pid}
@@ -73,6 +76,22 @@
     <!-- 分页查询二级目录 -->
     <select id="findSecondDirectory" resultType="com.yohann.entity.ItemCategory" parameterType="map">
         select * from item_category  where isDelete=0 and pid=#{pid} order by id limit #{starIndex}, #{pageSize}
+    </select>
+
+
+    <!-- 查询一级目录 -->
+    <select id="findAllFirstDirectory" resultType="com.yohann.entity.ItemCategory">
+        select * from item_category  where isDelete = 0 and pid = 0 order by id
+    </select>
+
+    <!-- 查询二级目录 -->
+    <select id="findAllSecondDirectory" resultType="com.yohann.entity.ItemCategory" parameterType="map">
+        select * from item_category  where isDelete=0 and pid=#{pid} order by id
+    </select>
+
+    <!-- 查询二级目录 -->
+    <select id="findAllSecondDirectory2" resultType="com.yohann.entity.ItemCategory">
+        select * from item_category  where isDelete = 0 and pid != 0 order by id
     </select>
 
     <!-- 查询一级数据条数 -->

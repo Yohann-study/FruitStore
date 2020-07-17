@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yohann.dao.ItemOrderDao">
+    <!--实体类与数据库映射字段部分-->
+    <resultMap id="ResultMapItemOrder" type="com.yohann.entity.ItemOrder">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="itemId" column="item_id" jdbcType="INTEGER"/>
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="code" column="code" jdbcType="VARCHAR"/>
+        <result property="addTime" column="addTime" jdbcType="TIMESTAMP"/>
+        <result property="total" column="total" jdbcType="VARCHAR"/>
+        <result property="isDelete" column="isDelete" jdbcType="INTEGER"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <association property="user" column="user_id" select="com.yohann.dao.UserDao.findById"/>
+        <collection property="details" column="id" ofType="com.yohann.entity.OrderDetail" select="com.yohann.dao.OrderDetailDao.findAllByOrderId"/>
+    </resultMap>
+
+    <!-- 查询所有 -->
+    <select id="findAll"  resultMap="ResultMapItemOrder">
+        select * from item_order
+    </select>
+
+    <!-- 按对象查询 -->
+    <select id="findEntity"  resultMap="ResultMapItemOrder" parameterType="com.yohann.entity.ItemOrder">
+        select * from item_order
+        <trim prefix="where" prefixOverrides="and">
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="itemId != null">
+                and item_id = #{itemId}
+            </if>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+            <if test="code != null">
+                and code = #{code}
+            </if>
+            <if test="addTime != null">
+                and addTime = #{addTime}
+            </if>
+            <if test="total != null">
+                and total = #{total}
+            </if>
+            <if test="isDelete != null">
+                and isDelete = #{isDelete}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+        </trim>
+    </select>
+
+    <!-- 按ID查询 -->
+    <select id="findById"  resultMap="ResultMapItemOrder" parameterType="int">
+        select * from item_order where id = #{id}
+    </select>
+    
+    <!-- 插入 -->
+    <insert id="insert" parameterType="com.yohann.entity.ItemOrder">
+        insert into item_order(item_id,user_id,code,addTime,total,isDelete,status) values (#{itemId},#{userId},#{code},#{addTime},#{total},#{isDelete},#{status})
+    </insert>
+
+    <!-- 修改 -->
+    <update id="update" parameterType="com.yohann.entity.ItemOrder">
+        update item_order
+        <trim prefix="set" prefixOverrides=",">
+            <if test="itemId != null">
+                , item_id = #{itemId}
+            </if>
+            <if test="userId != null">
+                , user_id = #{userId}
+            </if>
+            <if test="code != null">
+                , code = #{code}
+            </if>
+            <if test="addTime != null">
+                , addTime = #{addTime}
+            </if>
+            <if test="total != null">
+                , total = #{total}
+            </if>
+            <if test="isDelete != null">
+                , isDelete = #{isDelete}
+            </if>
+            <if test="status != null">
+                , status = #{status}
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <!-- 按照ID删除 -->
+    <delete id="deleteById" parameterType="int">
+        delete from item_order where id = #{id}
+    </delete>
+
+    <!-- 查询数据条数 -->
+    <select id="count" resultType="long">
+        select count(*) from item_order
+    </select>
+
+    <!-- 分页查询 -->
+    <select id="findByPager"  resultMap="ResultMapItemOrder" parameterType="map">
+        select * from item_order where isDelete = 0 order by id desc limit #{starIndex}, #{pageSize}
+    </select>
+
+    <!-- 模糊搜索 -->
+    <select id="findLike" resultMap="ResultMapItemOrder" parameterType="map">
+        select * from item_order where isDelete = 0 and code like '%${key}%' limit #{starIndex}, #{pageSize}
+    </select>
+</mapper>

@@ -28,16 +28,16 @@ public class Pager<T> {
 
 	/**
 	 * 计算页数
-	 * @param rows
+	 * @param count
 	 * @param pageSize
 	 * @return
 	 */
-	public long ComputationalPages(List<T> rows, int pageSize){
+	public long ComputationalPages(long count, int pageSize){
 		long total;
-		if(rows.size()%pageSize == 0)
-			total = rows.size()/pageSize;
+		if(count%pageSize == 0)
+			total = count/pageSize;
 		else
-			total = rows.size()/pageSize+1;
+			total = count/pageSize+1;
 
 		return total;
 	}
