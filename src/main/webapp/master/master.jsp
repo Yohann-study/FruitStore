@@ -1,7 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="root" value="${pageContext.request.contextPath}"/>
+<c:set var="imagesRoot" value="${pageContext.request.contextPath}/resource/upload/images/items"/>
 <script>
     var root = "${root}";
+    var imagesRoot = "${imagesRoot}";
 </script>
 
 <!-- 导入bootstrap框架 -->

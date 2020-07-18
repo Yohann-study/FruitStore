@@ -48,7 +48,7 @@
                 <c:forEach items="${result.rows}" var="data">
                     <tr style="font-size: 13px;">
                         <td>${data.name}</td>
-                        <td><img src="${data.url1}" alt="" style="width: 50px;height: 50px;"></td>
+                        <td><img src="${imagesRoot}/${data.url1}" alt="" style="width: 50px;height: 50px;"></td>
                         <td>${data.price}</td>
                         <td>${data.category1.name}</td>
                         <td>${data.category2.name}</td>

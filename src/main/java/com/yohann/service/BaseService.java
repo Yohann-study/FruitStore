@@ -1,10 +1,8 @@
 package com.yohann.service;
 
-import com.yohann.dao.BaseDao;
 import com.yohann.utils.Pager;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * 服务层接口基类

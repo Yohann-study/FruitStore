@@ -4,7 +4,7 @@
 <mapper namespace="com.yohann.dao.ItemDao">
     <!--实体类与数据库映射字段部分-->
     <resultMap id="ResultMapItem" type="com.yohann.entity.Item">
-        <id property="id" column="id"/>
+        <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="name" column="name" />
         <result property="price" column="price"/>
         <result property="zk" column="zk"/>
@@ -109,7 +109,7 @@
     </select>
 
     <!-- 按ID查询 -->
-    <select id="findById"  resultMap="ResultMapItem" parameterType="long">
+    <select id="findById"  resultMap="ResultMapItem" parameterType="int">
         select * from item where id = #{id}
     </select>
     
@@ -126,7 +126,7 @@
         update item
         <trim prefix="set" prefixOverrides=",">
             <if test="name != null">
-                , name = #{name}
+                name = #{name}
             </if>
             <if test="price != null">
                 , price = #{price}
