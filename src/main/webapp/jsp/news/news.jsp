@@ -51,8 +51,8 @@
                         <td>${data.name}</td>
                         <td>${data.addTime}</td>
                         <td>
-                            <a href="/news/update?id=${itemCategory.id}"><span class="glyphicon glyphicon-pencil"></span> 修改 &nbsp;</a>
-                            <a href="/news/delete?id=${itemCategory.id}"><span class="glyphicon glyphicon-trash"></span> 删除 &nbsp;</a>
+                            <a href="/news/update?id=${data.id}"><span class="glyphicon glyphicon-pencil"></span> 修改 &nbsp;</a>
+                            <a href="/news/delete?id=${data.id}"><span class="glyphicon glyphicon-trash"></span> 删除 &nbsp;</a>
                         </td>
                     </tr>
                 </c:forEach>

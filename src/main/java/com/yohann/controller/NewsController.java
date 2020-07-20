@@ -57,6 +57,39 @@ public class NewsController {
         Date utilDate = new Date();
         news.setAddTime(new Timestamp(utilDate.getTime()));
         newsService.insert(news);
+
+        return "redirect:/news/news";
+    }
+
+    /**
+     * 修改
+     */
+    @RequestMapping("update")
+    public String update(int id,Model model){
+        model.addAttribute("result", newsService.findById(id));
+
+        return "news/update";
+    }
+
+    /**
+     * 执行更新操作
+     */
+    @RequestMapping("exUpdate")
+    public String exUpdate(News news){
+        Date utilDate = new Date();
+        news.setAddTime(new Timestamp(utilDate.getTime()));
+        newsService.update(news);
+
+        return "redirect:/news/news";
+    }
+
+    /**
+     * 删除
+     */
+    @RequestMapping("delete")
+    public String delete(int id){
+        newsService.deleteById(id);
+
         return "redirect:/news/news";
     }
 }

@@ -27,7 +27,7 @@
     </select>
 
     <!-- 按ID查询 -->
-    <select id="findById" resultType="com.yohann.entity.News" parameterType="long">
+    <select id="findById" resultType="com.yohann.entity.News" parameterType="int">
         select * from news where id = #{id}
     </select>
     

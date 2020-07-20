@@ -6,7 +6,11 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="/master/master.jsp"%>
+<!-- 导入bootstrap框架 -->
+<link rel="stylesheet" href="${root}/resource/bootstrap-3.3.7-dist/css/bootstrap.css">
+<link rel="stylesheet" href="${root}/resource/font-awesome/css/font-awesome.min.css">
+<script src="${root}/resource/bootstrap-3.3.7-dist/jQuery/jquery-1.11.0.js"></script>
+<script src="${root}/resource/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
 <html>
 <head>
     <title>管理员登录</title>
