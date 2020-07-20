@@ -55,8 +55,6 @@
     </style>
     <div class="container-fluid">
         <a style="pointer-events: none;border: none;font-size: 20px;margin-left: 20px;margin-right: 20px;color: white;padding:10px;"><span class="glyphicon glyphicon-apple"></span>水果商城后台</a>
-        <a style="color: green;text-decoration:none;font-size: 18px;padding:10px;"><span class="glyphicon glyphicon-home"></span> 前台首页</a>
-        <a style="color: orange;text-decoration:none;font-size: 18px;padding:10px;"><span class="glyphicon glyphicon-trash"></span> 清除缓存</a>
         <a style="color: red;text-decoration:none;font-size: 18px;padding:10px;" href="/login/exit"><span class="glyphicon glyphicon-off"></span> 退出登录</a>
     </div>
 

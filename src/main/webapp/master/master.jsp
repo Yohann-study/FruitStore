@@ -15,8 +15,12 @@
 <script src="${root}/resource/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
 
 <%
-    Manage manage = (Manage)request.getSession().getAttribute(mySession.MANAGE);
-    if (manage.getRealName() == null){
+    try{
+        Manage manage = (Manage)request.getSession().getAttribute(mySession.MANAGE);
+        if (manage.getRealName() == null){
+            response.sendRedirect("/login/exit");
+        }
+    }catch (Exception e){
         response.sendRedirect("/login/exit");
     }
 %>
