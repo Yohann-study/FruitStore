@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yohann.dao.NewsDao">
+    <!-- 查询所有 -->
+    <select id="findAll" resultType="com.yohann.entity.News">
+        select * from news
+    </select>
+
+    <!-- 按对象查询 -->
+    <select id="findEntity" resultType="com.yohann.entity.News" parameterType="com.yohann.entity.News">
+        select * from news
+        <trim prefix="where" prefixOverrides="and">
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="name != null">
+                and name = #{name}
+            </if>
+            <if test="content != null">
+                and content = #{content}
+            </if>
+            <if test="addTime != null">
+                and addTime = #{addTime}
+            </if>
+        </trim>
+    </select>
+
+    <!-- 按ID查询 -->
+    <select id="findById" resultType="com.yohann.entity.News" parameterType="int">
+        select * from news where id = #{id}
+    </select>
+    
+    <!-- 插入 -->
+    <insert id="insert" parameterType="com.yohann.entity.News">
+        insert into news(name,content,addTime) values (#{name},#{content},#{addTime})
+    </insert>
+
+    <!-- 修改 -->
+    <update id="update" parameterType="com.yohann.entity.News">
+        update news
+        <trim prefix="set" prefixOverrides=",">
+            <if test="name != null">
+                name = #{name}
+            </if>
+            <if test="content != null">
+                , content = #{content}
+            </if>
+            <if test="addTime != null">
+                , addTime = #{addTime}
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <!-- 按照ID删除 -->
+    <delete id="deleteById" parameterType="int">
+        delete from news where id = #{id}
+    </delete>
+
+    <!-- 查询数据条数 -->
+    <select id="count" resultType="long">
+        select count(*) from news
+    </select>
+
+    <!-- 分页查询 -->
+    <select id="findByPager" resultType="com.yohann.entity.News" parameterType="map">
+        select * from news limit #{starIndex}, #{pageSize}
+    </select>
+
+    <!-- 模糊搜索用户名 -->
+    <select id="findLike" resultType="com.yohann.entity.News" parameterType="map">
+        select * from news where name like '%${key}%' limit #{starIndex}, #{pageSize}
+    </select>
+</mapper>

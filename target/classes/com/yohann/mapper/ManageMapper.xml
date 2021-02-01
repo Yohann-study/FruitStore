@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yohann.dao.ManageDao">
+    <!-- 验证账号密码 -->
+    <select id="findEntity" resultType="com.yohann.entity.Manage" parameterType="com.yohann.entity.Manage">
+        select * from manage where userName = #{userName} and passWord = #{passWord}
+    </select>
+</mapper>

@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yohann.dao.ItemDao">
+    <!--实体类与数据库映射字段部分-->
+    <resultMap id="ResultMapItem" type="com.yohann.entity.Item">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" />
+        <result property="price" column="price"/>
+        <result property="zk" column="zk"/>
+        <result property="scNum" column="scNum"/>
+        <result property="gmNum" column="gmNum"/>
+        <result property="url1" column="url1"/>
+        <result property="url2" column="url2"/>
+        <result property="url3" column="url3"/>
+        <result property="url4" column="url4"/>
+        <result property="url5" column="url5"  />
+        <result property="ms" column="ms"  />
+        <result property="pam1" column="pam1" />
+        <result property="pam2" column="pam2" />
+        <result property="pam3" column="pam3" />
+        <result property="val1" column="val1" />
+        <result property="val2" column="val2" />
+        <result property="val3" column="val3" />
+        <result property="type" column="type" />
+        <result property="categoryIdOne" column="category_id_one"/>
+        <result property="categoryIdTwo" column="category_id_two" />
+        <result property="isDelete" column="isDelete"/>
+        <association property="category1" column="category_id_one" select="com.yohann.dao.ItemCategoryDao.findById"/>
+        <association property="category1" column="category_id_two" select="com.yohann.dao.ItemCategoryDao.findById"/>
+    </resultMap>
+
+    <!-- 查询所有 -->
+    <select id="findAll"  resultMap="ResultMapItem">
+        select * from item
+    </select>
+
+    <!-- 按对象查询 -->
+    <select id="findEntity"  resultMap="ResultMapItem" parameterType="com.yohann.entity.Item">
+        select * from item
+        <trim prefix="where" prefixOverrides="and">
+            <if test="id != null">
+                id = #{id}
+            </if>
+            <if test="name != null">
+                and name = #{name}
+            </if>
+            <if test="price != null">
+                and price = #{price}
+            </if>
+            <if test="scNum != null">
+                and scNum = #{scNum}
+            </if>
+            <if test="gmNum != null">
+                and gmNum = #{gmNum}
+            </if>
+            <if test="url1 != null">
+                and url1 = #{url1}
+            </if>
+            <if test="url2 != null">
+                and url2 = #{url2}
+            </if>
+            <if test="url3 != null">
+                and url3 = #{url3}
+            </if>
+            <if test="url4 != null">
+                and url4 = #{url4}
+            </if>
+            <if test="url5 != null">
+                and url5 = #{url5}
+            </if>
+            <if test="ms != null">
+                and ms = #{ms}
+            </if>
+            <if test="pam1 != null">
+                and pam1 = #{pam1}
+            </if>
+            <if test="pam2 != null">
+                and pam2 = #{pam2}
+            </if>
+            <if test="pam3 != null">
+                and pam3 = #{pam3}
+            </if>
+            <if test="val1 != null">
+                and val1 = #{val1}
+            </if>
+            <if test="val2 != null">
+                and val2 = #{val2}
+            </if>
+            <if test="val3 != null">
+                and val3 = #{val3}
+            </if>
+            <if test="type != null">
+                and type = #{type}
+            </if>
+            <if test="zk != null">
+                and zk = #{zk}
+            </if>
+            <if test="categoryIdOne != null">
+                and category_id_one = #{categoryIdOne}
+            </if>
+            <if test="categoryIdTwo != null">
+                and category_id_two = #{categoryIdTwo}
+            </if>
+            <if test="isDelete != null">
+                and isDelete = #{isDelete}
+            </if>
+        </trim>
+    </select>
+
+    <!-- 按ID查询 -->
+    <select id="findById"  resultMap="ResultMapItem" parameterType="int">
+        select * from item where id = #{id}
+    </select>
+    
+    <!-- 插入 -->
+    <insert id="insert" parameterType="com.yohann.entity.Item">
+        insert into item(name,price,zk,scNum,gmNum,url1,url2,url3,url4,url5,ms,pam1,pam2,pam3,val1,val2,val3,type,
+        category_id_one,category_id_two,isDelete)
+        values (#{name},#{price},#{zk},#{scNum},#{gmNum},#{url1},#{url2},#{url3},#{url4},#{url5},#{ms},#{pam1},#{pam2},#{pam3},
+        #{val1},#{val2},#{val3},#{type},#{categoryIdOne},#{categoryIdTwo},#{isDelete})
+    </insert>
+
+    <!-- 修改 -->
+    <update id="update" parameterType="com.yohann.entity.Item">
+        update item
+        <trim prefix="set" prefixOverrides=",">
+            <if test="name != null">
+                name = #{name}
+            </if>
+            <if test="price != null">
+                , price = #{price}
+            </if>
+            <if test="scNum != null">
+                , scNum = #{scNum}
+            </if>
+            <if test="gmNum != null">
+                , gmNum = #{gmNum}
+            </if>
+            <if test="url1 != null">
+                , url1 = #{url1}
+            </if>
+            <if test="url2 != null">
+                , url2 = #{url2}
+            </if>
+            <if test="url3 != null">
+                , url3 = #{url3}
+            </if>
+            <if test="url4 != null">
+                , url4 = #{url4}
+            </if>
+            <if test="url5 != null">
+                , url5 = #{url5}
+            </if>
+            <if test="ms != null">
+                , ms = #{ms}
+            </if>
+            <if test="pam1 != null">
+                , pam1 = #{pam1}
+            </if>
+            <if test="pam2 != null">
+                , pam2 = #{pam2}
+            </if>
+            <if test="pam3 != null">
+                , pam3 = #{pam3}
+            </if>
+            <if test="val1 != null">
+                , val1 = #{val1}
+            </if>
+            <if test="val2 != null">
+                , val2 = #{val2}
+            </if>
+            <if test="val3 != null">
+                , val3 = #{val3}
+            </if>
+            <if test="type != null">
+                , type = #{type}
+            </if>
+            <if test="zk != null">
+                , zk = #{zk}
+            </if>
+            <if test="categoryIdOne != null">
+                , category_id_one = #{categoryIdOne}
+            </if>
+            <if test="categoryIdTwo != null">
+                , category_id_two = #{categoryIdTwo}
+            </if>
+            <if test="isDelete != null">
+                , isDelete = #{isDelete}
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <!-- 按照ID删除 -->
+    <delete id="deleteById" parameterType="int">
+        delete from item where id = #{id}
+    </delete>
+
+    <!-- 查询数据条数 -->
+    <select id="count" resultType="long">
+        select count(*) from item
+    </select>
+
+    <!-- 分页查询 -->
+    <select id="findByPager"  resultMap="ResultMapItem" parameterType="map">
+        select * from item where isDelete = 0 order by id desc limit #{starIndex}, #{pageSize}
+    </select>
+</mapper>

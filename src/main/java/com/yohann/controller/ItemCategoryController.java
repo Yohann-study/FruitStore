@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.ui.Model;
 
+import java.util.List;
+
 /**
  * 类目管理控制器
  */
@@ -91,6 +93,7 @@ public class ItemCategoryController{
     public String update(Integer id,Model model){
         ItemCategory itemCategory = itemCategoryService.findById(id);
         model.addAttribute("obj",itemCategory);
+
         return "itemCategory/update";
     }
 
